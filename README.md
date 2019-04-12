@@ -123,12 +123,12 @@ db.billingcycles.find({year: 2017}).skip(1).limit(1)
 ```
 
 Aggregate:
-```JSON
+```shell
 db.billingcycles.aggregate([{$project:{credit:{$sum:"$credits.value"},debt:{$sum:"$debts.value"}}}, {$group:{_id: null, credit:{$sum:"$credit"}, debt:{$sum:"$debt"}}}])
 ```
 
 Aggregate, somando apenas os créditos e débitos de cada registro:
-```JSON
+```shell
 db.billingcycles.aggregate([{$project:{credit:{$sum:"$credits.value"},debt:{$sum:"$debts.value"}}}])
 ```
 
