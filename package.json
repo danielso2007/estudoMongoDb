@@ -1,0 +1,9 @@
+{
+  "name": "estudoMongoDb",
+  "version": "0.1.0",
+  "description": "Estudo do MongoDb",
+  "main": "index.js",
+  "repository": "https://github.com/danielso2007/estudoMongoDb",
+  "author": "Daniel Oliveira <danielso2007@gmail.com>",
+  "license": "MIT"
+}
