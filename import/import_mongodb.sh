@@ -1,0 +1,76 @@
+#!/bin/bash
+RED='\033[0;31m'
+Black='\033[0;30m'
+Dark_Gray='\033[1;30m'
+Light_Red='\033[1;31m'
+Green='\033[0;32m'
+Light_Green='\033[1;32m'
+Brown_Orange='\033[0;33m'
+Yellow='\033[1;33m'
+Blue='\033[0;34m'
+Light_Blue='\033[1;34m'
+Purple='\033[0;35m'
+Light_Purple='\033[1;35m'
+Cyan='\033[0;36m'
+Light_Cyan='\033[1;36m'
+Light_Gray='\033[0;37m'
+White='\033[1;37m'
+NC='\033[0m' # No Color
+DIR="/opt/mongobackups/"
+valid=true
+
+function PEDIR_INFORMACOES_USUARIO()
+{
+    while [ $valid ]
+    do
+        echo -e "${Light_Blue}Infome o nome do banco de dados:${NC}"
+        read dataBaseName
+        if [[ -z "$dataBaseName" ]]
+        then
+            echo -e "${RED}Você não informou o nome do banco de dados!${NC}"
+        else
+            break
+        fi
+    done
+}
+
+function PEDIR_INFORMACOES_ARQUIVO()
+{
+    while [ $valid ]
+    do
+        echo -e "${Light_Blue}Infome o nome do arquivo JSON:${NC}"
+        read jsonName
+        if [[ -z "$jsonName" ]]
+        then
+            echo -e "${Yellow}Nome do arquivo JSON não informado, usar:${NC} ${Green}dataset.json${NC}"
+            jsonName=dataset.json
+            break
+        else
+            break
+        fi
+    done
+}
+
+function IMPORT() {
+    echo -e "${Green}Executando:${NC} ${Yellow}mongoimport --drop -d $1 $2${NC}"
+    mongoimport --drop -d $1 $2
+    echo -e "${Green}Arquivo $2 importado com sucesso!"
+}
+
+echo "Importando arquivo para o MongoDB..."
+
+if [ "$#" -eq 2 ]; then
+    echo "Total de argumentos: $#"
+    echo "1st Argument = $1"
+    echo "2st Argument = $2"
+    IMPORT $1 $2
+else
+    if [ "$#" -eq 1 ]; then
+        PEDIR_INFORMACOES_ARQUIVO
+        IMPORT $1 $jsonName
+    else
+        PEDIR_INFORMACOES_USUARIO
+        PEDIR_INFORMACOES_ARQUIVO
+        IMPORT $dataBaseName $jsonName
+    fi
+fi
