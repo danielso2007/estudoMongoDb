@@ -148,3 +148,376 @@ Removendo o banco de dados:
 ```shell
 db.dropDatabase()
 ```
+
+# ESTUDO DE MONGODB
+
+Pequeno projeto de estudo para o banco de dados noSql MongoDB.
+
+# INSTALAÇÃO NO LINUX
+
+Criar pasta para dados dando permissão ao MongoDB:
+```shell
+mkdir /data/db
+```
+
+Entrar na pasta aonde fica localizado o executável do MongoDB:
+```shell
+cd ~/mongodb/bin
+```
+
+Inicializar o serviço do banco de dados MongoDB:
+```shell
+./mongod --port 27017 --dbpath /data/db
+```
+
+# INTRODUÇÃO
+
+Mostrar bancos de dados disponíveis no servidor:
+```shell
+show dbs
+```
+
+Usar um determinado banco de dados:
+```shell
+use estudomongodb
+```
+
+Criar uma collection:
+```shell
+db.createCollection('funcionarios')
+```
+
+Eliminar um banco de dados __(É importante selecionar o banco de dados)__:
+```shell
+use cursomongodb2
+db.dropDatabase();
+```
+
+Exibir Collections:
+```shell
+show collections
+```
+
+Remover todos os documentos de uma collection:
+```shell
+db.postagens.remove({})
+```
+
+Dropar uma collection:
+```shell
+db.postagens.drop();
+```
+
+# EXEMPLOS DE INSERÇÃO E CONSULTA DE DADOS
+
+Inserir dados (documentos) em uma collection:
+```json
+use mobiledb
+db.postagens.insert( {titulo: 'Primeira Postagem', conteudo: 'Conteudo 01', tags: []} )
+db.postagens.insert( {titulo: 'Segunda Postagem', conteudo: 'Conteudo 02', tags: []} )
+db.postagens.insert( {titulo: 'Terceira Postagem', conteudo: 'Conteudo 03', tags: ['esporte', 'cinema', 'praia']} )
+db.postagens.insert( {titulo: 'Quarto Postagem', conteudo: 'Conteudo 04', tags: ['praia', 'games', 'livros']} )
+db.postagens.insert( {titulo: 'Quinto Postagem', conteudo: 'Conteudo 05', tags: ['cinema']} )
+db.postagens.insert( {titulo: 'Sexto Postagem', conteudo: 'Conteudo 06', tags: ['estudo', 'cinema', 'viagem']} )
+db.postagens.insert( {titulo: 'Lorem ipsum dolor sit amet', conteudo: 'Conteudo 07', tags: ['livros']} )
+db.postagens.insert( {titulo: 'Sed mi metus', conteudo: 'Conteudo 08', tags: ['cinema']} )
+db.postagens.insert( {titulo: 'Sed et dui eget massa pretium posuere eget a eros', conteudo: 'Conteudo 09', tags: ['praia']} )
+db.postagens.insert( {titulo: 'Cras tempor consectetur quam sed consequat', conteudo: 'Conteudo 10', tags: ['esporte', 'estudo']} )
+```
+
+Mostrar todos os dados da collection:
+```json
+db.postagens.find();
+```
+
+Exibir os dados formatados:
+```json
+db.postagens.find().pretty();
+```
+
+
+Limitar a quantidade de registros retornados na consulta:
+```json
+db.postagens.find().limit(2).pretty();
+```
+```json
+db.postagens.find().pretty().limit(2);
+```
+
+
+## Principais metodos para consultar dados: findOne() vs find()
+
+
+Ordenar resultados:
+```json
+db.postagens.find().sort({titulo: 1});
+```
+
+Limitar a quantide de registros retornados e exibir de forma ordenada:
+```json
+db.postagens.find().sort({titulo: 1}).limit(2);
+```
+
+Realizar a Projeção de Atributos (seleção dos atributos a serem exibidos):
+```json
+db.postagens.find({}, {titulo: true})
+```
+
+Por padrão, o mongodb retorna o atributo "_id" nas consultas. Caso queira não exibir este atributo, basta adicionar o atributo "_id" na projeção com o seu valor para "false":
+```json
+db.postagens.find({}, {titulo: true, _id: false}).sort({titulo: 1})
+```
+
+Consultar os documentos com titulo "Primeira Postagem":
+```json
+db.postagens.findOne({titulo: 'Primeira Postagem'})
+```
+
+Consultar os documentos com um atributo inexistente "nome". Como o mongo não trabalha como esquema rigido, não haverá nenhum erro, apesar, claro, de não ser retornado nenhum resultado pois nao existe nenhum documento com este atributo:
+```json
+db.postagens.findOne({nome: 'Primeira Postagem'})
+```
+Atualizando o registro:
+```json
+db.postagens.update({"titulo": "Primeira Postagem"}, {$set: {"conteudo": "Conteúdo alterado", "tags": ['airsoft', 'paintball']}})
+db.postagens.findOne({"titulo": "Primeira Postagem"})
+```
+```json
+db.postagens.update({"titulo": "Primeira Postagem"}, {$set: {"conteudo": "Conteúdo 01", "tags": []}})
+db.postagens.findOne({"titulo": "Primeira Postagem"})
+```
+
+Pesquisando registros que iniciam com "T"
+```json
+db.postagens.find({titulo: /^T/})
+```
+
+Removendo registros que iniciam com "T"
+```json
+db.postagens.remove({titulo: /^T/})
+```
+
+
+# OUTROS EXEMPLOS DE INSERÇÃO E CONSULTA DE DADOS (DOCUMENTOS)
+
+Inserir um documento com array e documentos aninhados:
+```json
+db.estoque.insert(
+   {
+     item: "ABC1",
+     detalhes: {
+        modelo: "14Q3",
+        fabricante: "XYZ Empresa"
+     },
+     itensestoque: [ { tamanho: "S", qtde: 25 }, { tamanho: "M", qtde: 50 } ],
+     categoria: "roupas"
+   }
+)
+```
+
+Verificar o documento inserido:
+```json
+db.estoque.find().pretty();
+```
+
+Inserir um Array de Documentos:
+```json
+var meusdocumentos =
+    [
+      {
+        item: "ABC2",
+        detalhes: { modelo: "14Q3", fabricante: "M1 Corporation" },
+        itensestoque: [ { tamanho: "M", qtde: 50 } ],
+        categoria: "roupas"
+      },
+      {
+        item: "MNO2",
+        detalhes: { modelo: "14Q3", fabricante: "ABC Empresa" },
+        itensestoque: [ { tamanho: "S", qtde: 5 }, { tamanho: "M", qtde: 5 }, { tamanho: "L", qtde: 1 } ],
+        categoria: "roupas"
+      },
+      {
+        item: "IJK2",
+        detalhes: { modelo: "14Q2", fabricante: "M5 Corporation" },
+        itensestoque: [ { tamanho: "S", qtde: 5 }, { tamanho: "L", qtde: 1 } ],
+        categoria: "utensílios domésticos"
+      },
+      {
+        item: "IJE3",
+        detalhes: { modelo: "1232", fabricante: "M64 Corporation" },
+        itensestoque: [ { tamanho: "S", qtde: 15 }, { tamanho: "G", qtde: 4 } ],
+        categoria: "utensílios domésticos"
+      },
+      {
+        item: "UYE6",
+        detalhes: { modelo: "6YT5", fabricante: "M5 Corporation" },
+        itensestoque: [ { tamanho: "S", qtde: 6 }, { tamanho: "L", qtde: 11 } ],
+        categoria: "roupas"
+      }
+    ]
+
+db.estoque.insert(meusdocumentos)
+```
+
+Inserir múltiplos documentos utilizando o "bulk":
+```json
+var bulk = db.estoque.initializeUnorderedBulkOp()
+
+bulk.insert(
+   {
+     item: "BE10",
+     detalhes: { modelo: "14Q2", fabricante: "XYZ Empresa" },
+     itensestoque: [ { tamanho: "L", qtde: 5 } ],
+     categoria: "roupas"
+   }
+)
+
+bulk.insert(
+   {
+     item: "ZYT1",
+     detalhes: { modelo: "14Q1", fabricante: "ABC Empresa"  },
+     itensestoque: [ { tamanho: "S", qtde: 5 }, { tamanho: "M", qtde: 5 } ],
+     categoria: "utensílios domésticos"
+   }
+)
+
+bulk.insert(
+   {
+     item: "OIR8",
+     detalhes: { modelo: "12W7", fabricante: "ABC Empresa"  },
+     itensestoque: [ { tamanho: "S", qtde: 15 }, { tamanho: "M", qtde: 15 }, { tamanho: "G", qtde: 1 } ],
+     categoria: "roupas"
+   }
+)
+
+bulk.execute()
+```
+
+Consulta especificando uma condição de igualdade:
+```json
+db.estoque.find( { categoria: "roupas" } ).pretty()
+```
+
+Consulta especificando uma condição "in":
+```json
+db.estoque.find( { categoria: { $in: [ 'roupas', 'utensílios domésticos' ] } } ).pretty()
+```
+
+Consulta especificando uma condição "AND" e "MENOR QUE":
+```json
+db.estoque.find( { categoria: 'roupas', "itensestoque.qtde": { $lt: 10 } } ).pretty()
+```
+
+Contar a quantidade de registros retornados na consulta:
+```json
+db.estoque.count()
+```
+```json
+db.estoque.find( { categoria: 'roupas', "itensestoque.qtde": { $lt: 10 } } ).count()
+```
+
+Consulta especificando uma condição "OR":
+```json
+db.estoque.find(
+   {
+     $or: [ { "itensestoque.qtde": { $lt: 10 } }, { "itensestoque.qtde": { $gt: 20 } } ]
+   }
+).pretty()
+```
+
+Consulta especificando condição "AND" e "OR":
+```json
+db.estoque.find(
+   {
+     categoria: 'roupas',
+     $or: [ { "itensestoque.qtde": { $lt: 10 } }, { "itensestoque.qtde": { $gt: 20 } } ]
+   }
+).pretty()
+```
+
+# EXEMPLOS DE ALTERAÇÃO DE DADOS (DOCUMENTOS)
+
+Atualizar atributos específicos no documento (usar o operador "set"):
+```json
+db.estoque.update(
+    { item: "MNO2" },
+    {
+      $set: {
+        categoria: "eletrônicos",
+        detalhes: { modelo: "14Q3", fabricante: "XYZ Empresa" }
+      },
+      $currentDate: { lastModified: true }
+    }
+)
+```
+
+Atualizar um atributo em um documento aninhado:
+```json
+db.estoque.update(
+  { item: "ABC1" },
+  { $set: { "detalhes.modelo": "14Q2" } }
+)
+```
+
+
+Atualizar múltiplos documentos:
+```json
+db.estoque.update(
+   { categoria: "roupas" },
+   {
+     $set: { categoria: "eletrônicos" },
+     $currentDate: { lastModified: true }
+   },
+   { multi: true }
+)
+```
+
+
+Substituir o documento:
+```json
+db.estoque.update(
+   { item: "BE10" },
+   {
+     item: "BE05",
+     itensestoque: [ { tamanho: "S", qtde: 20 }, { tamanho: "M", qtde: 5 } ],
+     categoria: "eletrônicos"
+   }
+)
+```
+
+
+Atualização utilizando "upsert". Ao especificar "upsert: true", o método "update()" ou atualiza os documentos que atenderem ao predicado da consulta ou insere um novo documento usando os valores especificados no update, caso não nenhum documento previamente existente atenda ao predicado de busca.
+```json
+db.estoque.update(
+   { item: "TBD1" },
+   {
+     item: "TBD1",
+     detalhes: { "modelo" : "14Q4", "fabricante" : "ABC Empresa" },
+     itensestoque: [ { "size" : "S", "qty" : 25 } ],
+     categoria: "utensílios domésticos"
+   },
+   { upsert: true }
+)
+```
+
+# EXEMPLOS DE EXCLUSÃO DE DADOS (DOCUMENTOS)
+
+Remover os documentos que atendam a um determinado predicado:
+```json
+db.estoque.remove( { type : "comida" } )
+```
+
+Remover um único documento que atenda a um determinado predicado:
+```json
+db.estoque.remove( { type : "comida" }, 1 )
+```
+
+Remover todos os documentos de uma collection, Obs.: Comparando com um SGBD relacional, este comando é equivalente a um delete sem a cláusula "where":
+```json
+db.estoque.remove({})
+```
+
+Para remover todos os documentos de uma collection, pode ser mais eficiente usar o método "drop()" para dropar a collection inteira, e então recriar a mesma e os respectivos índices.
+```json
+db.estoque.drop();
+```
