@@ -1,28 +1,28 @@
-nome,codigo,gentilico,capital
-Rondônia,11,rondoniense ou rondoniano,Porto Velho
-Acre,12,acriano,Rio Branco
-Amazonas,13,amazonense,Manaus
-Roraima,14,roraimense,Boa Vista
-Pará,15,paraense,Belém
-Amapá,16,amapaense,Macapá
-Tocantins,17,tocantinense,Palmas
-Maranhão,21,maranhense,São Luis
-Piauí,22,piauiense,Teresina
-Ceará,23,cearense,Fortaleza
-Rio Grande do Norte,24,potiguar ou norte-rio-grandense ou rio-grandense-do-norte,Natal
-Paraíba,25,paraibano,João Pessoa
-Pernambuco,26,pernambucano,Recife
-Alagoas,27,alagoano,Maceió
-Sergipe,28,sergipano ou sergipense,Aracaju
-Bahia,29,baiano,Salvador
-Minas Gerais,31,mineiro,Belo Horizonte
-Espírito Santo,32,capixaba ou espírito-santense,Vitória
-Rio de Janeiro,33,fluminense,Rio de Janeiro
-São Paulo,35,paulista,São Paulo
-Paraná,41,paranaense,Curitiba
-Santa Catarina,42,catarinense ou barriga-verde,Florianópolis
-Rio Grande do Sul,43,gaúcho ou sul-rio-grandense,Porto Alegre
-Mato Grosso do Sul,50,sul-mato-grossense ou mato-grossense-do-sul,Campo Grande
-Mato Grosso,51,mato-grossense,Cuiabá
-Goiás,52,goiano,Goiânia
-Distrito Federal,53,brasiliense,Brasília
+nome,codigo,sigla,gentilico,capital
+Rondônia,11,RO,rondoniense ou rondoniano,Porto Velho
+Acre,12,AC,acriano,Rio Branco
+Amazonas,13,AM,amazonense,Manaus
+Roraima,14,RR,roraimense,Boa Vista
+Pará,15,PA,paraense,Belém
+Amapá,16,AP,amapaense,Macapá
+Tocantins,17,TO,tocantinense,Palmas
+Maranhão,21,MA,maranhense,São Luis
+Piauí,22,PI,piauiense,Teresina
+Ceará,23,CE,cearense,Fortaleza
+Rio Grande do Norte,24,RN,potiguar ou norte-rio-grandense ou rio-grandense-do-norte,Natal
+Paraíba,25,PB,paraibano,João Pessoa
+Pernambuco,26,PE,pernambucano,Recife
+Alagoas,27,AL,alagoano,Maceió
+Sergipe,28,SE,sergipano ou sergipense,Aracaju
+Bahia,29,BA,baiano,Salvador
+Minas Gerais,31,MG,mineiro,Belo Horizonte
+Espírito Santo,32,ES,capixaba ou espírito-santense,Vitória
+Rio de Janeiro,33,RJ,fluminense,Rio de Janeiro
+São Paulo,35,SP,paulista,São Paulo
+Paraná,41,PR,paranaense,Curitiba
+Santa Catarina,42,SC,catarinense ou barriga-verde,Florianópolis
+Rio Grande do Sul,43,RS,gaúcho ou sul-rio-grandense,Porto Alegre
+Mato Grosso do Sul,50,MS,sul-mato-grossense ou mato-grossense-do-sul,Campo Grande
+Mato Grosso,51,MT,mato-grossense,Cuiabá
+Goiás,52,GO,goiano,Goiânia
+Distrito Federal,53,DF,brasiliense,Brasília

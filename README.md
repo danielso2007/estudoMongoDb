@@ -521,3 +521,35 @@ Para remover todos os documentos de uma collection, pode ser mais eficiente usar
 ```json
 db.estoque.drop();
 ```
+# MUNICÍPIOS COM ESTADOS
+
+```
+db.municipios.aggregate([
+    {
+      $lookup:
+        {
+          from: "estados",
+          localField: "codigoUf",
+          foreignField: "codigo",
+          as: "estado"
+        }
+   }
+])
+```
+
+Municípios com seu estados:
+
+```
+db.municipios.aggregate([
+    {
+      $lookup:
+        {
+          from: "estados",
+          localField: "codigoUf",
+          foreignField: "codigo",
+          as: "estado"
+        }
+   },
+   { $project : { "nome" : 1, "codigoUf": 1, "estado.nome": 1, "estado.sigla": 1 }}
+])
+```
