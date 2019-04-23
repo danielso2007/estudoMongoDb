@@ -19,7 +19,7 @@ NC='\033[0m' # No Color
 DIR="/opt/mongobackups/"
 valid=true
 
-function PEDIR_INFORMACOES_USUARIO()
+function PEDIR_INFORMACOES_BANCO()
 {
     while [ $valid ]
     do
@@ -57,6 +57,8 @@ function IMPORT() {
     echo -e "${Green}Arquivo $2 importado com sucesso!"
 }
 
+[ $# -eq 0 ] && { echo -e "${Light_Purple}Você também pode usar:${NC} ${Yellow}$0 nome_banco_dados arquivo_json.${NC}"; }
+
 echo "Importando arquivo para o MongoDB..."
 
 if [ "$#" -eq 2 ]; then
@@ -69,7 +71,7 @@ else
         PEDIR_INFORMACOES_ARQUIVO
         IMPORT $1 $jsonName
     else
-        PEDIR_INFORMACOES_USUARIO
+        PEDIR_INFORMACOES_BANCO
         PEDIR_INFORMACOES_ARQUIVO
         IMPORT $dataBaseName $jsonName
     fi

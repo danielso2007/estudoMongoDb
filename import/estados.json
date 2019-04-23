@@ -1,0 +1,163 @@
+
+	{
+	  "nome": "Rondônia",
+	  "codigo": 11,
+	  "gentilico": "rondoniense ou rondoniano",
+	  "capital": "Porto Velho"
+	}
+	{
+	  "nome": "Acre",
+	  "codigo": 12,
+	  "gentilico": "acriano",
+	  "capital": "Rio Branco"
+	}
+	{
+	  "nome": "Amazonas",
+	  "codigo": 13,
+	  "gentilico": "amazonense",
+	  "capital": "Manaus"
+	}
+	{
+	  "nome": "Roraima",
+	  "codigo": 14,
+	  "gentilico": "roraimense",
+	  "capital": "Boa Vista"
+	}
+	{
+	  "nome": "Pará",
+	  "codigo": 15,
+	  "gentilico": "paraense",
+	  "capital": "Belém"
+	}
+	{
+	  "nome": "Amapá",
+	  "codigo": 16,
+	  "gentilico": "amapaense",
+	  "capital": "Macapá"
+	}
+	{
+	  "nome": "Tocantins",
+	  "codigo": 17,
+	  "gentilico": "tocantinense",
+	  "capital": "Palmas"
+	}
+	{
+	  "nome": "Maranhão",
+	  "codigo": 21,
+	  "gentilico": "maranhense",
+	  "capital": "São Luis"
+	}
+	{
+	  "nome": "Piauí",
+	  "codigo": 22,
+	  "gentilico": "piauiense",
+	  "capital": "Teresina"
+	}
+	{
+	  "nome": "Ceará",
+	  "codigo": 23,
+	  "gentilico": "cearense",
+	  "capital": "Fortaleza"
+	}
+	{
+	  "nome": "Rio Grande do Norte",
+	  "codigo": 24,
+	  "gentilico": "potiguar ou norte-rio-grandense ou rio-grandense-do-norte",
+	  "capital": "Natal"
+	}
+	{
+	  "nome": "Paraíba",
+	  "codigo": 25,
+	  "gentilico": "paraibano",
+	  "capital": "João Pessoa"
+	}
+	{
+	  "nome": "Pernambuco",
+	  "codigo": 26,
+	  "gentilico": "pernambucano",
+	  "capital": "Recife"
+	}
+	{
+	  "nome": "Alagoas",
+	  "codigo": 27,
+	  "gentilico": "alagoano",
+	  "capital": "Maceió"
+	}
+	{
+	  "nome": "Sergipe",
+	  "codigo": 28,
+	  "gentilico": "sergipano ou sergipense",
+	  "capital": "Aracaju"
+	}
+	{
+	  "nome": "Bahia",
+	  "codigo": 29,
+	  "gentilico": "baiano",
+	  "capital": "Salvador"
+	}
+	{
+	  "nome": "Minas Gerais",
+	  "codigo": 31,
+	  "gentilico": "mineiro",
+	  "capital": "Belo Horizonte"
+	}
+	{
+	  "nome": "Espírito Santo",
+	  "codigo": 32,
+	  "gentilico": "capixaba ou espírito-santense",
+	  "capital": "Vitória"
+	}
+	{
+	  "nome": "Rio de Janeiro",
+	  "codigo": 33,
+	  "gentilico": "fluminense",
+	  "capital": "Rio de Janeiro"
+	}
+	{
+	  "nome": "São Paulo",
+	  "codigo": 35,
+	  "gentilico": "paulista",
+	  "capital": "São Paulo"
+	}
+	{
+	  "nome": "Paraná",
+	  "codigo": 41,
+	  "gentilico": "paranaense",
+	  "capital": "Curitiba"
+	}
+	{
+	  "nome": "Santa Catarina",
+	  "codigo": 42,
+	  "gentilico": "catarinense ou barriga-verde",
+	  "capital": "Florianópolis"
+	}
+	{
+	  "nome": "Rio Grande do Sul",
+	  "codigo": 43,
+	  "gentilico": "gaúcho ou sul-rio-grandense",
+	  "capital": "Porto Alegre"
+	}
+	{
+	  "nome": "Mato Grosso do Sul",
+	  "codigo": 50,
+	  "gentilico": "sul-mato-grossense ou mato-grossense-do-sul",
+	  "capital": "Campo Grande"
+	}
+	{
+	  "nome": "Mato Grosso",
+	  "codigo": 51,
+	  "gentilico": "mato-grossense",
+	  "capital": "Cuiabá"
+	}
+	{
+	  "nome": "Goiás",
+	  "codigo": 52,
+	  "gentilico": "goiano",
+	  "capital": "Goiânia"
+	}
+	{
+	  "nome": "Distrito Federal",
+	  "codigo": 53,
+	  "gentilico": "brasiliense",
+	  "capital": "Brasília"
+	}
