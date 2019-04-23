@@ -40,6 +40,8 @@ function DUMP() {
     echo -e "Criado backup em: ${Green}$2`date +"%y-%m-%d"`/$1${NC}"
 }
 
+[ $# -eq 0 ] && { echo -e "${Light_Purple}Você também pode usar:${NC} ${Yellow}$0 nome_banco_dados.${NC}"; }
+
 echo "Realizando dump do banco de dados MongoDB..."
 echo "Verificando diretório ${DIR}..."
 if [ -d ${DIR} ]

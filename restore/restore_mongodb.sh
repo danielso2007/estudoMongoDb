@@ -40,7 +40,7 @@ function INFORMAR_DATA() {
         read dataBaseDate
         if [[ -z "$dataBaseDate" ]]
         then
-            echo -e "${RED}Você não informou a data de restauração!"
+            echo -e "${Light_Red}Você não informou a data de restauração!"
         else
             break
         fi
@@ -51,9 +51,9 @@ function VERIFICAR_DIRETORIO () {
     echo "Verificando diretório $1..."
     if [ -d $1 ]
     then
-        echo "${YELLOW}Diretório $1 existe.${NC}"
+        echo -e "${Yellow}Diretório $1 existe.${NC}"
     else
-        echo -e "${RED}Diretório $1 não existe.${NC}"
+        echo -e "${Light_Red}Diretório $1 não existe.${NC}"
         exit 1
     fi
 }
@@ -63,8 +63,10 @@ function RESTAURAR() {
     echo -e "${Green}Restauração com sucesso!: ${DIR}$2/$1${NC}"
 }
 
+[ $# -eq 0 ] && { echo -e "${Light_Purple}Você também pode usar:${NC} ${Yellow}$0 nome_banco_dados data_restauracao (YY-MM-DD).${NC}"; }
+
 if [ "$#" -eq 1 ]; then
-    echo -e "${RED}É necessário informar 2 parâmetros: o nome do banco de dados e a data de restauração (YY-MM-DD)${NC}"
+    echo -e "${Light_Red}É necessário informar 2 parâmetros: o nome do banco de dados e a data de restauração (YY-MM-DD)${NC}"
     exit 1
 fi
 
