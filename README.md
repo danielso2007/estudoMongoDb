@@ -31,41 +31,41 @@
 # Comandos básicos:
 
 Exibir bancos de dados:
-```shell
+```
 show dbs
 ```
 
 Acessando banco de dados:
-```shell
+```
 use db_finance
 ```
 
 Exibir banco atual:
-```shell
+```
 db
 ```
 
 Criando coleção:
-```shell
+```
 db.createCollection("billingcycles")
 ```
 
 Exibir collections:
-```shell
+```
 show collections
 ```
 
 Deletando collections:
-```shell
+```
 db.billingcycles.drop()
 ```
 
 Inserindo dados:
-```shell
+```
 db.billingcycles.insert({name: "Janeiro/17", month: 1, year: 2017})
 ```
 Ou
-```shell
+```
 db.billingcycles.insert({
 
 # Digitando:
@@ -73,12 +73,12 @@ db.billingcycles.insert({ name: "Março/17", month: 3, year: 2017, credits: [ {n
 ```
 
 Salvando/atualizando dados:
-```shell
+```
 db.billingcycles.save({name: "Fevereiro/17", month: 2, year: 2017})
 ```
 
 Update dados:
-```shell
+```
 db.billingcycles.update({$and:[{month: 1}, {year:2017}]}, {$set:{credits:[{name:"Salário", value: 2800}], debts:[{name:"Luz", value: 500, status: "PAGO"}]}})
 ```
 
@@ -91,61 +91,61 @@ db.billingcycles.find().pretty()
 ```
 
 Pesquisar o primeiro registro:
-```shell
+```
 db.billingcycles.findOne()
 ```
 
 Pesquisar registro com filtro:
-```shell
+```
 db.billingcycles.findOne({month: 2})
 ```
 
 Pesquisar com `ou`:
-```shell
+```
 db.billingcycles.find({ $or: [{month: 1}, {month: 2}] }).pretty()
 ```
 
 Pesquisar que possuem credits:
-```shell
+```
 db.billingcycles.find({credits: {$exists: true}}).pretty()
 
 db.billingcycles.find({credits: {$exists: true}}, {_id: 0, name: 1}).pretty()
 ```
 
 Pesquisar com skip:
-```shell
+```
 db.billingcycles.find({year: 2017}).skip(1)
 ```
 
 Pesquisar com limit:
-```shell
+```
 db.billingcycles.find({year: 2017}).skip(1).limit(1)
 ```
 
 Aggregate:
-```shell
+```
 db.billingcycles.aggregate([{$project:{credit:{$sum:"$credits.value"},debt:{$sum:"$debts.value"}}}, {$group:{_id: null, credit:{$sum:"$credit"}, debt:{$sum:"$debt"}}}])
 ```
 
 Aggregate, somando apenas os créditos e débitos de cada registro:
-```shell
+```
 db.billingcycles.aggregate([{$project:{credit:{$sum:"$credits.value"},debt:{$sum:"$debts.value"}}}])
 ```
 
 Contador:
-```shell
+```
 db.billingcycles.count()
 ```
 
 Remove:
-```shell
+```
 db.billingcycles.remove({month: 2})
 
 db.billingcycles.remove({year: 2017}, 1)
 ```
 
 Removendo o banco de dados:
-```shell
+```
 db.dropDatabase()
 ```
 
@@ -156,62 +156,62 @@ Pequeno projeto de estudo para o banco de dados noSql MongoDB.
 # INSTALAÇÃO NO LINUX
 
 Criar pasta para dados dando permissão ao MongoDB:
-```shell
+```
 mkdir /data/db
 ```
 
 Entrar na pasta aonde fica localizado o executável do MongoDB:
-```shell
+```
 cd ~/mongodb/bin
 ```
 
 Inicializar o serviço do banco de dados MongoDB:
-```shell
+```
 ./mongod --port 27017 --dbpath /data/db
 ```
 
 # INTRODUÇÃO
 
 Mostrar bancos de dados disponíveis no servidor:
-```shell
+```
 show dbs
 ```
 
 Usar um determinado banco de dados:
-```shell
+```
 use estudomongodb
 ```
 
 Criar uma collection:
-```shell
+```
 db.createCollection('funcionarios')
 ```
 
 Eliminar um banco de dados __(É importante selecionar o banco de dados)__:
-```shell
+```
 use cursomongodb2
 db.dropDatabase();
 ```
 
 Exibir Collections:
-```shell
+```
 show collections
 ```
 
 Remover todos os documentos de uma collection:
-```shell
+```
 db.postagens.remove({})
 ```
 
 Dropar uma collection:
-```shell
+```
 db.postagens.drop();
 ```
 
 # EXEMPLOS DE INSERÇÃO E CONSULTA DE DADOS
 
 Inserir dados (documentos) em uma collection:
-```json
+```
 use mobiledb
 db.postagens.insert( {titulo: 'Primeira Postagem', conteudo: 'Conteudo 01', tags: []} )
 db.postagens.insert( {titulo: 'Segunda Postagem', conteudo: 'Conteudo 02', tags: []} )
@@ -226,21 +226,21 @@ db.postagens.insert( {titulo: 'Cras tempor consectetur quam sed consequat', cont
 ```
 
 Mostrar todos os dados da collection:
-```json
+```
 db.postagens.find();
 ```
 
 Exibir os dados formatados:
-```json
+```
 db.postagens.find().pretty();
 ```
 
 
 Limitar a quantidade de registros retornados na consulta:
-```json
+```
 db.postagens.find().limit(2).pretty();
 ```
-```json
+```
 db.postagens.find().pretty().limit(2);
 ```
 
@@ -249,51 +249,51 @@ db.postagens.find().pretty().limit(2);
 
 
 Ordenar resultados:
-```json
+```
 db.postagens.find().sort({titulo: 1});
 ```
 
 Limitar a quantide de registros retornados e exibir de forma ordenada:
-```json
+```
 db.postagens.find().sort({titulo: 1}).limit(2);
 ```
 
 Realizar a Projeção de Atributos (seleção dos atributos a serem exibidos):
-```json
+```
 db.postagens.find({}, {titulo: true})
 ```
 
 Por padrão, o mongodb retorna o atributo "_id" nas consultas. Caso queira não exibir este atributo, basta adicionar o atributo "_id" na projeção com o seu valor para "false":
-```json
+```
 db.postagens.find({}, {titulo: true, _id: false}).sort({titulo: 1})
 ```
 
 Consultar os documentos com titulo "Primeira Postagem":
-```json
+```
 db.postagens.findOne({titulo: 'Primeira Postagem'})
 ```
 
 Consultar os documentos com um atributo inexistente "nome". Como o mongo não trabalha como esquema rigido, não haverá nenhum erro, apesar, claro, de não ser retornado nenhum resultado pois nao existe nenhum documento com este atributo:
-```json
+```
 db.postagens.findOne({nome: 'Primeira Postagem'})
 ```
 Atualizando o registro:
-```json
+```
 db.postagens.update({"titulo": "Primeira Postagem"}, {$set: {"conteudo": "Conteúdo alterado", "tags": ['airsoft', 'paintball']}})
 db.postagens.findOne({"titulo": "Primeira Postagem"})
 ```
-```json
+```
 db.postagens.update({"titulo": "Primeira Postagem"}, {$set: {"conteudo": "Conteúdo 01", "tags": []}})
 db.postagens.findOne({"titulo": "Primeira Postagem"})
 ```
 
 Pesquisando registros que iniciam com "T"
-```json
+```
 db.postagens.find({titulo: /^T/})
 ```
 
 Removendo registros que iniciam com "T"
-```json
+```
 db.postagens.remove({titulo: /^T/})
 ```
 
@@ -301,7 +301,7 @@ db.postagens.remove({titulo: /^T/})
 # OUTROS EXEMPLOS DE INSERÇÃO E CONSULTA DE DADOS (DOCUMENTOS)
 
 Inserir um documento com array e documentos aninhados:
-```json
+```
 db.estoque.insert(
    {
      item: "ABC1",
@@ -316,12 +316,12 @@ db.estoque.insert(
 ```
 
 Verificar o documento inserido:
-```json
+```
 db.estoque.find().pretty();
 ```
 
 Inserir um Array de Documentos:
-```json
+```
 var meusdocumentos =
     [
       {
@@ -360,7 +360,7 @@ db.estoque.insert(meusdocumentos)
 ```
 
 Inserir múltiplos documentos utilizando o "bulk":
-```json
+```
 var bulk = db.estoque.initializeUnorderedBulkOp()
 
 bulk.insert(
@@ -394,30 +394,30 @@ bulk.execute()
 ```
 
 Consulta especificando uma condição de igualdade:
-```json
+```
 db.estoque.find( { categoria: "roupas" } ).pretty()
 ```
 
 Consulta especificando uma condição "in":
-```json
+```
 db.estoque.find( { categoria: { $in: [ 'roupas', 'utensílios domésticos' ] } } ).pretty()
 ```
 
 Consulta especificando uma condição "AND" e "MENOR QUE":
-```json
+```
 db.estoque.find( { categoria: 'roupas', "itensestoque.qtde": { $lt: 10 } } ).pretty()
 ```
 
 Contar a quantidade de registros retornados na consulta:
-```json
+```
 db.estoque.count()
 ```
-```json
+```
 db.estoque.find( { categoria: 'roupas', "itensestoque.qtde": { $lt: 10 } } ).count()
 ```
 
 Consulta especificando uma condição "OR":
-```json
+```
 db.estoque.find(
    {
      $or: [ { "itensestoque.qtde": { $lt: 10 } }, { "itensestoque.qtde": { $gt: 20 } } ]
@@ -426,7 +426,7 @@ db.estoque.find(
 ```
 
 Consulta especificando condição "AND" e "OR":
-```json
+```
 db.estoque.find(
    {
      categoria: 'roupas',
@@ -438,7 +438,7 @@ db.estoque.find(
 # EXEMPLOS DE ALTERAÇÃO DE DADOS (DOCUMENTOS)
 
 Atualizar atributos específicos no documento (usar o operador "set"):
-```json
+```
 db.estoque.update(
     { item: "MNO2" },
     {
@@ -452,7 +452,7 @@ db.estoque.update(
 ```
 
 Atualizar um atributo em um documento aninhado:
-```json
+```
 db.estoque.update(
   { item: "ABC1" },
   { $set: { "detalhes.modelo": "14Q2" } }
@@ -461,7 +461,7 @@ db.estoque.update(
 
 
 Atualizar múltiplos documentos:
-```json
+```
 db.estoque.update(
    { categoria: "roupas" },
    {
@@ -474,7 +474,7 @@ db.estoque.update(
 
 
 Substituir o documento:
-```json
+```
 db.estoque.update(
    { item: "BE10" },
    {
@@ -487,7 +487,7 @@ db.estoque.update(
 
 
 Atualização utilizando "upsert". Ao especificar "upsert: true", o método "update()" ou atualiza os documentos que atenderem ao predicado da consulta ou insere um novo documento usando os valores especificados no update, caso não nenhum documento previamente existente atenda ao predicado de busca.
-```json
+```
 db.estoque.update(
    { item: "TBD1" },
    {
@@ -503,22 +503,22 @@ db.estoque.update(
 # EXEMPLOS DE EXCLUSÃO DE DADOS (DOCUMENTOS)
 
 Remover os documentos que atendam a um determinado predicado:
-```json
+```
 db.estoque.remove( { type : "comida" } )
 ```
 
 Remover um único documento que atenda a um determinado predicado:
-```json
+```
 db.estoque.remove( { type : "comida" }, 1 )
 ```
 
 Remover todos os documentos de uma collection, Obs.: Comparando com um SGBD relacional, este comando é equivalente a um delete sem a cláusula "where":
-```json
+```
 db.estoque.remove({})
 ```
 
 Para remover todos os documentos de uma collection, pode ser mais eficiente usar o método "drop()" para dropar a collection inteira, e então recriar a mesma e os respectivos índices.
-```json
+```
 db.estoque.drop();
 ```
 # MUNICÍPIOS COM ESTADOS
